@@ -10,7 +10,7 @@ namespace Lab3
     {
         static void Main(string[] args)
         {
-             interfaces();
+            interfaces();
             //challenge6();
             //challenge7();
             //challenge9();
@@ -26,14 +26,15 @@ namespace Lab3
                 arr = input.Split(" ");
 
 
-               
-                    Firstchaleng(arr);
+
+                Firstchaleng(arr);
+
                 int coun = 0;
                 Console.WriteLine("Please enter a number between 2-10: ");
                 int number = Convert.ToInt32(Console.ReadLine());
-                if (number >= 2 || number <= 10)
+                if (number >= 2 && number <= 10)
                 {
-                    int[] arr1 = new int[number] ;
+                    int[] arr1 = new int[number];
                     for (int z = 0; z < number; z++)
                     {
                         if (coun == number)
@@ -51,23 +52,34 @@ namespace Lab3
                             arr1[z] = inputUser;
                         }
                     }
-                    Challenge2(number , arr1);
+                    Challenge2(number, arr1);
                 }
+                Challenge3();
                 int[] arr2 = new int[11] { 4, 4, 3, 2, 3, 4, 5, 6, 5, 4, 3 };
                 challenge4(arr2);
 
                 int[] arr3 = new int[6] { 6, 5, 90, 88, 4, 3 };
                 challenge5(arr3);
+                challenge6();
+                challenge7();
+                challenge8();
                 Console.WriteLine("enter sentance");
                 string a = Console.ReadLine();
-                challenge9(a);
+
+                Console.WriteLine("Write a sentence ");
+                string sentence = Console.ReadLine();
+                string[] array = challenge9(sentence); ;
+                foreach (string item in array)
+                {
+                    Console.Write($"{item} ");
+                }
             }
 
             catch (Exception xe)
             {
                 Console.WriteLine(xe.Message);
             }
-            
+
         }
 
 
@@ -78,47 +90,47 @@ namespace Lab3
                 return 0;
             }
             int counter = 0;
-              foreach( String s in arr )
+            foreach (String s in arr)
+            {
+                if (counter == 3)
                 {
-                    if (counter == 3)
-                    {
 
-                        return total;
-                    }
-                   else if (counter < 3)
+                    return total;
+                }
+                else if (counter < 3)
+                {
+                    try
                     {
-                        try
-                        {
-                            total *= Convert.ToInt32(s);
-                            counter++;
-                        }
-                        catch (Exception)
-                        {
-                            arr[counter] = "1";
-                            total *= Convert.ToInt32(arr[counter]);
-                        }
+                        total *= Convert.ToInt32(s);
+                        counter++;
                     }
-                } return total;
+                    catch (Exception)
+                    {
+                        arr[counter] = "1";
+                        total *= Convert.ToInt32(arr[counter]);
+                    }
+                }
+            } return total;
 
 
         }
-       
-        public static decimal Challenge2 (int number , int[] arr){
+
+        public static decimal Challenge2(int number, int[] arr) {
             int total = 0;
-            if (number == 0 || arr.Length<3)
+            if (number == 0 || arr.Length < 3)
             {
                 return 0;
             }
             for (int z = 0; z < number; z++)
             {
                 total += arr[z];
-            }    
-                  
-             return total/number;
+            }
+
+            return total / number;
         }
         public static void Challenge3()
         {
-            for(int y = 1; y <10; y=y+2)
+            for (int y = 1; y < 10; y = y + 2)
             {
                 Console.Write("    ");
                 for (int t = 0; t < y; t++)
@@ -129,7 +141,7 @@ namespace Lab3
                 Console.WriteLine(" ");
 
             }
-            for (int y = 7; y >=1; y = y - 2)
+            for (int y = 7; y >= 1; y = y - 2)
             {
                 Console.Write("    ");
                 for (int t = 0; t < y; t++)
@@ -178,15 +190,15 @@ namespace Lab3
         public static int challenge5(int[] arr)
         {
             int key = arr[0];
-            for(int x = 0; x < arr.Length; x++)
+            for (int x = 0; x < arr.Length; x++)
             {
-                if (arr[x] > key) { 
-                key = arr[x];
+                if (arr[x] > key) {
+                    key = arr[x];
                 }
             }
             return key;
         }
-           public static String  challenge6()
+        public static String challenge6()
         {
             Console.WriteLine("add the word in file text : ");
             string word = Console.ReadLine();
@@ -201,20 +213,8 @@ namespace Lab3
             try
             {
                 string path = "../../../../words.txt";
-                StreamReader sr = new StreamReader(path);
-               
-                line = sr.ReadLine();
-              
-                while (line != null)
-                {
-                  
-                    Console.WriteLine(line);
-                   
-                    line = sr.ReadLine();
-                }
-              
-                sr.Close();
-                Console.ReadLine();
+                string result = File.ReadAllText(path);
+                Console.WriteLine(result);
             }
             catch (Exception e)
             {
@@ -223,32 +223,28 @@ namespace Lab3
         }
 
         public static void challenge8() {
-            
-            string word = challenge6();
+
+            string word = "hello course";
             string path = "../../../../words.txt";
-           
+
             File.WriteAllText(path, word);
 
         }
 
-        public static Array challenge9(String a)
+        public static string[] challenge9(String a)
         {
-           
-            String[] arr = a.Split(" ");
-            string[,] wordInfo = new string[arr.Length, 2];
-
-            for (int i = 0; i < arr.Length; i++)
+            string[] sentance = a.Split(" ");
+            string[] newarr = new string[sentance.Length];
+            for (int i = 0; i < sentance.Length; i++)
             {
-                string word = arr[i];
-                int length = word.Length;
+                newarr[i] = $"{sentance[i]}: {sentance[i].Length}";
 
-                wordInfo[i, 0] = word;
-                wordInfo[i, 1] = length.ToString();
             }
+            return newarr;
+        }
 
-            return wordInfo;
-        
-    }
+    
+    
     }
 
 }

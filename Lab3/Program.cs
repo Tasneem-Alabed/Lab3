@@ -11,9 +11,7 @@ namespace Lab3
         static void Main(string[] args)
         {
             interfaces();
-            //challenge6();
-            //challenge7();
-            //challenge9();
+            
 
 
         }
@@ -22,12 +20,13 @@ namespace Lab3
             String[] arr;
             try
             {
+                Console.WriteLine("Please enter 3 numbers :");
                 String input = Console.ReadLine();
                 arr = input.Split(" ");
 
-
-
-                Firstchaleng(arr);
+                int aa = Firstchaleng(arr);
+                Console.WriteLine($"The product of these 3 numbers is {aa}");
+               
 
                 int coun = 0;
                 Console.WriteLine("Please enter a number between 2-10: ");
@@ -41,8 +40,9 @@ namespace Lab3
                         {
                             Challenge2(z, arr1);
                         }
+                        Console.WriteLine($"{z + 1} of {number} - Enter  number:");
                         int inputUser = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine($"{z + 1} of {number} - Enter a number:");
+                       
                         if (inputUser < 0)
                         {
                             z--;
@@ -52,17 +52,25 @@ namespace Lab3
                             arr1[z] = inputUser;
                         }
                     }
-                    Challenge2(number, arr1);
+                    decimal amount = Challenge2(number, arr1);
+                    Console.WriteLine($"The average of these {arr1.Length} numbers is {amount}");
+                   
                 }
                 Challenge3();
                 int[] arr2 = new int[11] { 4, 4, 3, 2, 3, 4, 5, 6, 5, 4, 3 };
-                challenge4(arr2);
+                for(int x = 0;  x < arr2.Length; x++) {
+
+                    Console.Write(arr2[x]+"  ");
+                }
+                int dup = challenge4(arr2);
+                Console.WriteLine($"The most item duplicates {dup}");
+               
 
                 int[] arr3 = new int[6] { 6, 5, 90, 88, 4, 3 };
                 challenge5(arr3);
                 challenge6();
                 challenge7();
-                challenge8();
+               // challenge8();
                 Console.WriteLine("enter sentance");
                 string a = Console.ReadLine();
 
@@ -132,7 +140,7 @@ namespace Lab3
         {
             for (int y = 1; y < 10; y = y + 2)
             {
-                Console.Write("    ");
+               
                 for (int t = 0; t < y; t++)
                 {
                     Console.Write("*");
@@ -143,7 +151,7 @@ namespace Lab3
             }
             for (int y = 7; y >= 1; y = y - 2)
             {
-                Console.Write("    ");
+              
                 for (int t = 0; t < y; t++)
                 {
                     Console.Write("*");
@@ -202,7 +210,7 @@ namespace Lab3
         {
             Console.WriteLine("add the word in file text : ");
             string word = Console.ReadLine();
-            string path = "../../../../words.txt";
+            string path = "../../../words.txt";
             //StreamReader sr = new StreamReader(path);
             File.WriteAllText(path, word);
             return word;
@@ -212,7 +220,7 @@ namespace Lab3
             String line;
             try
             {
-                string path = "../../../../words.txt";
+                string path = "../../../words.txt";
                 string result = File.ReadAllText(path);
                 Console.WriteLine(result);
             }
@@ -225,7 +233,7 @@ namespace Lab3
         public static void challenge8() {
 
             string word = "hello course";
-            string path = "../../../../words.txt";
+            string path = "../../../words.txt";
 
             File.WriteAllText(path, word);
 
